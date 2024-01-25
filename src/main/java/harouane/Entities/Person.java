@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "persons")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "generic_person")
 public class Person {
     @Id
     @GeneratedValue

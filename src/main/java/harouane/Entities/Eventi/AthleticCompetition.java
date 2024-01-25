@@ -13,10 +13,10 @@ import java.util.Set;
 @Table(name = "athletic_competition")
 public class AthleticCompetition extends Event {
     @ManyToMany
-    @JoinTable(name="athletes_competition", joinColumns = @JoinColumn(name = "competitions"), inverseJoinColumns = @JoinColumn(name = "athletes"))
+    @JoinTable(name="athletes_competitions", joinColumns = @JoinColumn(name = "competitions"), inverseJoinColumns = @JoinColumn(name = "athletes"))
     Set<Person> athletes;
     @OneToOne
-    @JoinColumn(name = "winner_id", nullable = false, unique = true)
+    @JoinColumn(name = "winner_id", nullable = true)
     Athlete winner;
     public AthleticCompetition() {
     }

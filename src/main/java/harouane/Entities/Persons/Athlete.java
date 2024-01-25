@@ -4,15 +4,13 @@ import harouane.Entities.Eventi.AthleticCompetition;
 import harouane.Entities.Person;
 import harouane.enums.Genre;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+@Entity
+@DiscriminatorColumn(name = "atleta")
 public class Athlete extends Person {
-
     String team;
 
     public Athlete() {

@@ -1,16 +1,19 @@
 package harouane;
 
 import com.github.javafaker.Faker;
-import harouane.DAO.PersonDAO;
+import harouane.DAO.EventDAO;
+import harouane.Entities.Eventi.Concert;
 import harouane.Entities.Person;
-import harouane.Entities.Persons.Athlete;
 import harouane.enums.EventType;
 import harouane.enums.Genre;
+import harouane.enums.MusicalGenre;
 import harouane.enums.StateParticipation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
@@ -78,11 +81,41 @@ public class Application {
         personDAO.setNewEventsList(personToFind,events);
         personToFind.getEvents().forEach(ev->System.out.println(ev));
 */
+
+        /*LocationDAO= new LocationDAO(em);
+        Location location= new Location(faker.beer().name(), faker.address().country());
+        locationDAO.saveNewLocation(location);
         PersonDAO personDAO =new PersonDAO(em);
+        EventDAO eventDAO= new EventDAO(em);
         Athlete athlete = new Athlete(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(),faker.date().birthday(18,50), getRandomGenre.get(), faker.team().state());
         personDAO.saveNewPerson(athlete);
+        AthleticCompetition athleticCompetition=new AthleticCompetition(faker.book().title(), LocalDate.of(new Random().nextInt(2020, 2030), new Random().nextInt(1,12), new Random().nextInt(1,30)), faker.howIMetYourMother().catchPhrase(), getRandomEventType.get(), getRandomNumberPartecipant.get(), location);
+        eventDAO.saveNewEvent(athleticCompetition);
+        personDAO.saveNewPerson(randomPerson.get());
+
+        eventDAO.setEventWinner(29, athlete);*/
+        /*LocationDAO locationDAO= new LocationDAO(em);
+        Location location= new Location(faker.beer().name(), faker.address().country());
+        locationDAO.saveNewLocation(location);
+        Concert concert=new Concert(faker.book().title(), LocalDate.of(new Random().nextInt(2020, 2030), new Random().nextInt(1,12), new Random().nextInt(1,30)), faker.howIMetYourMother().catchPhrase(), getRandomEventType.get(), getRandomNumberPartecipant.get(), location, false, MusicalGenre.POP);
+        Concert concert2=new Concert(faker.book().title(), LocalDate.of(new Random().nextInt(2020, 2030), new Random().nextInt(1,12), new Random().nextInt(1,30)), faker.howIMetYourMother().catchPhrase(), getRandomEventType.get(), getRandomNumberPartecipant.get(), location, true, MusicalGenre.CLASSICAL);
+        Concert concert3=new Concert(faker.book().title(), LocalDate.of(new Random().nextInt(2020, 2030), new Random().nextInt(1,12), new Random().nextInt(1,30)), faker.howIMetYourMother().catchPhrase(), getRandomEventType.get(), getRandomNumberPartecipant.get(), location, false, MusicalGenre.ROCK);
+
+        EventDAO eventDAO= new EventDAO(em);
+
+        eventDAO.saveNewEvent(concert);
+        eventDAO.saveNewEvent(concert2);
+        eventDAO.saveNewEvent(concert3);*/
+
+        EventDAO eventDAO= new EventDAO(em);
+        List<Concert> concerts=new ArrayList<>(eventDAO.findByMusGenre(MusicalGenre.ROCK));
+        System.out.println(concerts);
+        List<Concert> concerts1=new ArrayList<>(eventDAO.findByStreaming(false));
+        System.out.println(concerts1);
+
         em.close();
         emf.close();
+
     }
 
 
